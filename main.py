@@ -1,16 +1,15 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 
-@app.route('/') #o decorator atribui uma funcionalidade a função abaixo dele
+@app.route('/')
 def home():
-    return '<h1> Site no ar!! </h1>' \
-           '<p> Esse site ta ficando legal! <p>'
+    return render_template('home.html')
 
 @app.route('/contato')
 def contato():
-    return '<h2>Qualquer mande um e-mail para listavip@hashtagtreinamentos.com </h2>'
+    return render_template('contato.html')
 
 
 if __name__ == '__main__':
