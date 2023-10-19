@@ -1,5 +1,6 @@
 from flask import Flask, render_template, url_for, request, flash, redirect
 from forms import FormLogin, FormCriarConta
+from translate import Translator
 
 
 lista_usuarios = ['Hugo', 'Alexandre', 'Renan', 'Amanda']
@@ -26,6 +27,8 @@ def usuarios():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    traduzir = Translator(from_lang="English", to_lang="Portuguese")
+
     form_login = FormLogin()
     form_criarconta = FormCriarConta()
 
@@ -41,7 +44,7 @@ def login():
         # redirecionar para a homepage
         return redirect(url_for('home'))
 
-    return render_template('login.html', form_login=form_login, form_criarconta=form_criarconta)
+    return render_template('login.html', form_login=form_login, form_criarconta=form_criarconta, traduzir=traduzir)
 
 
 if __name__ == '__main__':

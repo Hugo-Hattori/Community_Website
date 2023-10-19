@@ -17,7 +17,7 @@
                                 {{ form_login.email(class="form-control is-invalid") }}
                                 <div class="invalid-feedback">
                                     {% for erro in form_login.email.errors %}
-                                        {{ erro }}
+                                        {{ traduzir.translate(erro) }}
                                     {% endfor %}
                                 </div>
                             {% else %}
@@ -30,7 +30,7 @@
                                 {{ form_login.senha(class="form-control is-invalid") }}
                                 <div class="invalid-feedback">
                                     {% for erro in form_login.senha.errors %}
-                                        {{ erro }}
+                                        {{ traduzir.translate(erro) }}
                                     {% endfor %}
                                 </div>
                             {% else %}
@@ -56,7 +56,7 @@
                                 {{ form_criarconta.username(class="form-control is-invalid") }}
                                 <div class="invalid-feedback">
                                     {% for erro in form_criarconta.username.errors %}
-                                        {{ erro }}
+                                        {{ traduzir.translate(erro) }}
                                     {% endfor %}
                                 </div>
                             {% else %}
@@ -69,7 +69,7 @@
                                 {{ form_criarconta.email(class="form-control is-invalid") }}
                                 <div class="invalid-feedback">
                                     {% for erro in form_criarconta.email.errors %}
-                                        {{ erro }}
+                                        {{ traduzir.translate(erro) }}
                                     {% endfor %}
                                 </div>
                             {% else %}
@@ -82,7 +82,7 @@
                                 {{ form_criarconta.senha(class="form-control is-invalid") }}
                                 <div class="invalid-feedback">
                                     {% for erro in form_criarconta.senha.errors %}
-                                        {{ erro }}
+                                        {{ traduzir.translate(erro) }}
                                     {% endfor %}
                                 </div>
                             {% else %}
@@ -95,7 +95,7 @@
                                 {{ form_criarconta.confirmacao_senha(class="form-control is-invalid") }}
                                 <div class="invalid-feedback">
                                     {% for erro in form_criarconta.confirmacao_senha.errors %}
-                                        {{ erro }}
+                                        {{ traduzir.translate(erro) }}
                                     {% endfor %}
                                 </div>
                             {% else %}
