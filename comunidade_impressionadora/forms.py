@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import PasswordField, StringField, SubmitField, BooleanField
-from wtforms.validators import DataRequired, Length, Email, EqualTo
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+from comunidade_impressionadora.models import Usuario
 
 
 class FormCriarConta(FlaskForm):
@@ -9,6 +10,13 @@ class FormCriarConta(FlaskForm):
     senha = PasswordField('Senha', validators=[DataRequired(), Length(6, 20)])
     confirmacao_senha = PasswordField('Confirme a Senha', validators=[DataRequired(), EqualTo('senha')])
     botao_submit_crianconta = SubmitField('Criar Conta')
+
+    # temos que usar exatamente este nome na função pois essa é uma funcionalidade do validate_on_submit do flask
+    def validate_email(self, email):
+        usuario = Usuario.query.filter_by(email=email.data).first()
+        if usuario:
+            #obs: tive que colocar a mensagem de erro em inglês devido ao Translate que estou utilizando
+            raise ValidationError('E-mail address already registered. Sign up with another e-mail address or log in to continue.')
 
 
 class FormLogin(FlaskForm):
