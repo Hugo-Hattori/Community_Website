@@ -1,4 +1,4 @@
-from comunidade_impressionadora import app, database
+from comunidade_impressionadora import app, database, bcrypt
 from flask import render_template, redirect, url_for, flash, request
 from comunidade_impressionadora.forms import FormLogin, FormCriarConta
 from translate import Translator
@@ -35,7 +35,8 @@ def login():
         return redirect(url_for('home'))
 
     if form_criarconta.validate_on_submit() and 'botao_submit_crianconta' in request.form: #verifica se o form é válido e qual botão foi clicado
-        usuario = Usuario(username=form_criarconta.username.data, email=form_criarconta.email.data, senha=form_criarconta.senha.data)
+        senha_cript = bcrypt.generate_password_hash(form_criarconta.senha.data)
+        usuario = Usuario(username=form_criarconta.username.data, email=form_criarconta.email.data, senha=senha_cript)
         database.session.add(usuario)
         database.session.commit()
         flash(f'Conta criada com sucesso para o e-mail: {form_criarconta.email.data}', 'alert-success')
