@@ -3,7 +3,7 @@ from flask import render_template, redirect, url_for, flash, request
 from comunidade_impressionadora.forms import FormLogin, FormCriarConta
 from translate import Translator
 from comunidade_impressionadora.models import Usuario
-from flask_login import login_user, logout_user, current_user
+from flask_login import login_user, logout_user, current_user, login_required
 
 
 lista_usuarios = ['Hugo', 'Alexandre', 'Renan', 'Amanda']
@@ -20,6 +20,7 @@ def contato():
 
 
 @app.route('/lista-usuarios')
+@login_required
 def usuarios():
     return render_template('usuarios.html', lista_usuarios=lista_usuarios)
 
@@ -52,6 +53,7 @@ def login():
 
 
 @app.route('/sair')
+@login_required
 def logout():
     logout_user()
     flash('Logout feito com sucesso!', 'alert-success')
@@ -59,10 +61,12 @@ def logout():
 
 
 @app.route('/perfil')
+@login_required
 def perfil():
     return render_template('perfil.html')
 
 
 @app.route('/post/criar')
+@login_required
 def criar_post():
     return render_template('criarpost.html')
