@@ -80,6 +80,17 @@ def criar_post():
 @app.route('/perfil/editar', methods=['GET', 'POST'])
 @login_required
 def editar_perfil():
+    traduzir = Translator(from_lang="English", to_lang="Portuguese")
+
     form = FormEditarPerfil()
+    if form.validate_on_submit(): #neste caso estamos fazendo um request do tipo POST ao apertar o botão de submit
+        current_user.email = form.email.data
+        current_user.username = form.username.data
+        database.session.commit()
+        flash(f'Perfil atualizado com sucesso!', 'alert-success')
+        return redirect(url_for('perfil'))
+    elif request.method == 'GET': #o método request do tipo GET acontece automaticamente qdo a página é carregada
+        form.email.data = current_user.email
+        form.username.data = current_user.username
     foto_perfil = url_for('static', filename='fotos_perfil/{}'.format(current_user.foto_perfil))
-    return render_template('editarperfil.html', foto_perfil=foto_perfil, form=form)
+    return render_template('editarperfil.html', foto_perfil=foto_perfil, form=form, traduzir=traduzir)
