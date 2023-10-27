@@ -32,6 +32,12 @@ class FormEditarPerfil(FlaskForm):
     username = StringField('Nome de Usuário', validators=[DataRequired()])
     email = StringField('E-mail', validators=[DataRequired(), Email()])
     foto_perfil = FileField('Atualizar Foto de Perfil', validators=[FileAllowed(['jpg', 'png'])])
+    curso_excel = BooleanField('Excel Impressionador')
+    curso_VBA = BooleanField('VBA Impressionador')
+    curso_powerBI = BooleanField('Power BI Impressionador')
+    curso_python = BooleanField('Python Impressionador')
+    curso_ppt = BooleanField('Apresentações Impressionadoras')
+    curso_SQL = BooleanField('SQL Impressionador')
     arquivo_erro = 'O arquivo escolhido está em um formato não compatível. Por favor escolha um arquivo adequado.'
     botao_submit_editarperfil = SubmitField('Confirmar Edição')
 
