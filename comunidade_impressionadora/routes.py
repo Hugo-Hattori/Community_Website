@@ -7,6 +7,7 @@ from flask_login import login_user, logout_user, current_user, login_required
 from PIL import Image
 import secrets
 import os
+from wtforms import BooleanField
 
 
 lista_usuarios = ['Hugo', 'Alexandre', 'Renan', 'Amanda']
@@ -103,7 +104,10 @@ def atualizar_cursos(form):
         if 'curso_' in campo.name:
             if campo.data:
                 lista_cursos.append(campo.label.text)
-    return ';'.join(lista_cursos) #transformando a lista uma única string
+    lista_cursos = ';'.join(lista_cursos)  # transformando a lista uma única string
+    if len(lista_cursos) == 0:
+        lista_cursos = 'Não Informado'
+    return lista_cursos
 
 
 @app.route('/perfil/editar', methods=['GET', 'POST'])
