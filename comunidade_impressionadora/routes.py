@@ -128,7 +128,12 @@ def editar_perfil():
         flash(f'Perfil atualizado com sucesso!', 'alert-success')
         return redirect(url_for('perfil'))
     elif request.method == 'GET': #o método request do tipo GET acontece automaticamente qdo a página é carregada
+        #autopreenchimento de informações já informadas do usuário
         form.email.data = current_user.email
         form.username.data = current_user.username
+        for campo in form:
+            for curso in current_user.cursos.split(';'):  # o split retorna uma lista
+                if curso in str(campo.label):
+                    campo.data = BooleanField(default='checked')
     foto_perfil = url_for('static', filename='fotos_perfil/{}'.format(current_user.foto_perfil))
     return render_template('editarperfil.html', foto_perfil=foto_perfil, form=form, traduzir=traduzir)
