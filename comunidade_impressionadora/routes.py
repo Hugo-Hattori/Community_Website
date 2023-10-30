@@ -10,9 +10,6 @@ import os
 from wtforms import BooleanField
 
 
-lista_usuarios = ['Hugo', 'Alexandre', 'Renan', 'Amanda']
-
-
 @app.route('/')
 def home():
     return render_template('home.html')
@@ -26,6 +23,7 @@ def contato():
 @app.route('/lista-usuarios')
 @login_required
 def usuarios():
+    lista_usuarios = Usuario.query.all()
     return render_template('usuarios.html', lista_usuarios=lista_usuarios)
 
 
@@ -128,7 +126,7 @@ def editar_perfil():
         flash(f'Perfil atualizado com sucesso!', 'alert-success')
         return redirect(url_for('perfil'))
     elif request.method == 'GET': #o método request do tipo GET acontece automaticamente qdo a página é carregada
-        #autopreenchimento de informações já informadas do usuário
+        #autopreenchimento de dados já informadas pelo usuário
         form.email.data = current_user.email
         form.username.data = current_user.username
         for campo in form:
