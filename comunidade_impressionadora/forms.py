@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
-from wtforms import PasswordField, StringField, SubmitField, BooleanField
+from wtforms import PasswordField, StringField, SubmitField, BooleanField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from comunidade_impressionadora.models import Usuario
 from flask_login import current_user
@@ -48,3 +48,9 @@ class FormEditarPerfil(FlaskForm):
             if usuario:
                 #obs: tive que colocar a mensagem de erro em inglês devido ao Translate que estou utilizando
                 raise ValidationError('E-mail address already registered by another user. Sign up another e-mail address.')
+
+
+class FormCriarPost(FlaskForm):
+    titulo = StringField('Título do Post', validators=[DataRequired(), Length(2, 140)])
+    corpo = TextAreaField('Escreva seu Post Aqui', validators=[DataRequired()])
+    botao_submit = SubmitField('Criar Post')
