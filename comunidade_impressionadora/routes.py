@@ -12,7 +12,8 @@ from wtforms import BooleanField
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    posts = Post.query.all()
+    return render_template('home.html', posts=posts)
 
 
 @app.route('/contato')
@@ -78,7 +79,7 @@ def perfil():
 def criar_post():
     form = FormCriarPost()
     if form.validate_on_submit():
-        post = Post(titulo=form.titulo.data, corpo=form.corpo.data, autor=current_user)
+        post = Post(titulo=form.titulo.data, corpo=form.corpo.data, autor=current_user) #autor é um backref que liga o Post ao Usuario
         database.session.add(post)
         database.session.commit()
         flash('Post criado com sucesso!', 'alert-success')
