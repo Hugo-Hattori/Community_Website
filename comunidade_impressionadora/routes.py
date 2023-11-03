@@ -165,7 +165,7 @@ def exibir_post(post_id):
     return render_template('post.html', post=post, form=form)
 
 
-@app.route('/post/<post_id>/excluir', methods=['GET', 'POST'])
+@app.route('/post/<int:post_id>/excluir', methods=['POST'])
 @login_required
 def excluir_post(post_id):
     post = Post.query.get(post_id)
