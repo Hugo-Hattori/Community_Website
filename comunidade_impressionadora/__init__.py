@@ -9,7 +9,9 @@ import sqlalchemy
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'db2c69f4682f60645d82121f462f9313'
 if os.getenv('DATABASE_URL'):
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
+    URL_DB = os.getenv('DATABASE_URL')
+    nova_URL = URL_DB.replace('postgres://', 'postgresql://')
+    app.config['SQLALCHEMY_DATABASE_URI'] = nova_URL
 else:
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///comunidade.db'
 
