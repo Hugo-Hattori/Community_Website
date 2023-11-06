@@ -25,7 +25,7 @@ login_manager.login_message_category = 'alert-info'
 from comunidade_impressionadora import models #isto é ncessário para criar as tabelas para o deploy
 engine = sqlalchemy.create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
 inspector = sqlalchemy.inspect(engine)
-if not inspector.has_table('usuario'):
+if not inspector.has_table('usuario', shcema='dbo'):
     with app.app_context():
         database.drop_all()
         database.create_all()
