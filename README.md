@@ -39,20 +39,20 @@ page route being related to both the "FormLogin()" and "FormCriarConta()" object
 allows for free website deployments for simple applications.</p>
 
 ## Website's Homepage
-![img.png](img.png)
+![img.png](imgs/img.png)
 
 ## Login/Create Account Page
-![img_4.png](img_4.png)
+![img_4.png](imgs/img_4.png)
 
 ## Visualize all Users
-![img_1.png](img_1.png)
+![img_1.png](imgs/img_1.png)
 
 ## Edit Profile's Picture and Info
-![img_6.png](img_6.png)
-![img_7.png](img_7.png)
+![img_6.png](imgs/img_6.png)
+![img_7.png](imgs/img_7.png)
 
 ## Creating a new Post
-![img_2.png](img_2.png)
+![img_2.png](imgs/img_2.png)
 
 ## Editing/Deleting an existing Post
-![img_5.png](img_5.png)
+![img_5.png](imgs/img_5.png)
